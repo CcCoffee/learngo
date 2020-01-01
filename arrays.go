@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//go中的数组是值类型，会复制数组。所以我们必须定义数组的长度。
+// []int 与 [4]int在go中是完全不一样的东西
 func max(numbers [4]int) (int, int) {
 	maxi := -1
 	maxValue := 01
@@ -46,5 +48,7 @@ func main() {
 
 	maxi, maxValue := max(arr3)
 	fmt.Println(maxi, maxValue)
+
+	//max(arr1)//./arrays.go:51:5: cannot use arr1 (type [5]int) as type [4]int in argument to max
 
 }
