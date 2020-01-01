@@ -54,6 +54,17 @@ func main() {
 	fmt.Println(aa, ss)
 
 	euler()
+	triangle()
+}
+
+/**
+go的类型转换是强制的，没有隐式类型转换
+*/
+func triangle() {
+	var a, b int = 3, 4
+	var c int
+	c = int(math.Sqrt(float64(a*a + b*b))) //float算出来有可能是4.99999999994,这样强制转换为int会是4，该怎么办
+	fmt.Println(c)
 }
 
 /**
