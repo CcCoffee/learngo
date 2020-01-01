@@ -72,6 +72,19 @@ func Pow(a, b int) int {
 	return int(math.Pow(float64(a), float64(b)))
 }
 
+/**
+可变参数列表
+go没有默认参数，可选参数，函数重载。。。
+*/
+func sum(numbers ...int) int {
+	s := 0
+	for i := range numbers {
+		fmt.Println(numbers[i])
+		s += numbers[i]
+	}
+	return s
+}
+
 func main() {
 	fmt.Println(eval(3, 4, "*"))
 	fmt.Println(div(13, 3)) // 4 1
@@ -92,4 +105,6 @@ func main() {
 		func(a, b int) int {
 			return int(math.Pow(float64(a), float64(b)))
 		}, 3, 4))
+
+	fmt.Printf("Sum = %d\n", sum(1, 2, 3))
 }
