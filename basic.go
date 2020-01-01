@@ -86,6 +86,39 @@ func consts() {
 
 }
 
+/**
+go没有专门的enum类型，使用一组const代替
+*/
+func enums() {
+	//const(
+	//	cpp = 0
+	//	java = 1
+	//	python = 2
+	//	golang = 3
+	//)
+
+	//使用iota自增值种子表示自增值简化代码
+	//使用_占位
+	const (
+		cpp = iota
+		_
+		java
+		python
+		golang
+	)
+	fmt.Println(cpp, java, python, golang) //0 2 3 4
+
+	const (
+		b = 1 << (10 * iota)
+		kb
+		mb
+		gb
+		tb
+		pb
+	)
+	fmt.Println(b, kb, mb, gb, tb, pb) //1 1024 1048576 1073741824 1099511627776 1125899906842624
+}
+
 func main() {
 	fmt.Println("Hello world")
 	variableZeroValue()
@@ -97,4 +130,5 @@ func main() {
 	euler()
 	triangle()
 	consts()
+	enums()
 }
