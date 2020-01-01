@@ -22,6 +22,11 @@ func setValue1(arr *[2]int) {
 	arr[0] = 100 //(*arr)[0] = 100
 }
 
+//slice版本
+func sliceSetValue(arr []int) {
+	arr[0] = 100
+}
+
 func main() {
 	//数量写在类型前面
 	var arr1 [5]int
@@ -60,8 +65,12 @@ func main() {
 
 	arr := [2]int{2, 3}
 	setValue(arr)
-	fmt.Println("setValue", arr) //[100 3]
+	fmt.Println("setValue(arr)", arr) //[100 3]
 	setValue1(&arr)
-	fmt.Println("setValue1", arr) //[100 3]
+	fmt.Println("setValue1(&arr)", arr) //[100 3]
 
+	//slice版本
+	array := [2]int{2, 3}
+	sliceSetValue(array[:])
+	fmt.Println("sliceSetValue(arr[:])", array) //[100 3]
 }
