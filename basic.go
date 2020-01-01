@@ -45,16 +45,16 @@ func variableShorter() {
 	fmt.Println(a, b, c)
 }
 
-func main() {
-	fmt.Println("Hello world")
-	variableZeroValue()
-	variableInitialValue()
-	variableTypeDeduction()
-	variableShorter()
-	fmt.Println(aa, ss)
-
-	euler()
-	triangle()
+/**
+用go验证欧拉公式
+复数的使用
+*/
+func euler() {
+	//(0+1.2246467991473515e-16i),不是整数0的原因是complex64的实部和虚部都是float32，而complex128的实部和虚部都是float64
+	//浮点数标准都是不准的
+	fmt.Println(cmplx.Pow(math.E, 1i*math.Pi) + 1)
+	fmt.Println(cmplx.Exp(1i*math.Pi) + 1)         //math.E是一个非常特殊的数字，这样的写法更好
+	fmt.Printf("%0.3f\n", cmplx.Exp(1i*math.Pi)+1) //(0.000+0.000i)
 }
 
 /**
@@ -67,14 +67,34 @@ func triangle() {
 	fmt.Println(c)
 }
 
+const mypakcage = "main" //常量可以定义在包内部
 /**
-用go验证欧拉公式
-复数的使用
+go语言的常量
+并不使用变量名大写
 */
-func euler() {
-	//(0+1.2246467991473515e-16i),不是整数0的原因是complex64的实部和虚部都是float32，而complex128的实部和虚部都是float64
-	//浮点数标准都是不准的
-	fmt.Println(cmplx.Pow(math.E, 1i*math.Pi) + 1)
-	fmt.Println(cmplx.Exp(1i*math.Pi) + 1)         //math.E是一个非常特殊的数字，这样的写法更好
-	fmt.Printf("%0.3f\n", cmplx.Exp(1i*math.Pi)+1) //(0.000+0.000i)
+func consts() {
+	//const filename = "abc.txt"
+	//const a,b = 3,4//不规定类型时ab不确定
+	//======>等价于
+	const (
+		filename = "abc.txt"
+		a, b     = 3, 4
+	)
+	//常量数值可作为各种类型使用，它只是相当于是文本替换的动作，a，b我们不定义类型之后他们又可以作int也可以作float
+	var c = int(math.Sqrt(a*a + b*b))
+	fmt.Println(filename, c)
+
+}
+
+func main() {
+	fmt.Println("Hello world")
+	variableZeroValue()
+	variableInitialValue()
+	variableTypeDeduction()
+	variableShorter()
+	fmt.Println(aa, ss)
+
+	euler()
+	triangle()
+	consts()
 }
