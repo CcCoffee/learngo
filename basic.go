@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"math/cmplx"
+)
 
 //定义包内部的变量，go没有全局变量的说法
 //var aa = 3
@@ -48,4 +52,18 @@ func main() {
 	variableTypeDeduction()
 	variableShorter()
 	fmt.Println(aa, ss)
+
+	euler()
+}
+
+/**
+用go验证欧拉公式
+复数的使用
+*/
+func euler() {
+	//(0+1.2246467991473515e-16i),不是整数0的原因是complex64的实部和虚部都是float32，而complex128的实部和虚部都是float64
+	//浮点数标准都是不准的
+	fmt.Println(cmplx.Pow(math.E, 1i*math.Pi) + 1)
+	fmt.Println(cmplx.Exp(1i*math.Pi) + 1)         //math.E是一个非常特殊的数字，这样的写法更好
+	fmt.Printf("%0.3f\n", cmplx.Exp(1i*math.Pi)+1) //(0.000+0.000i)
 }
