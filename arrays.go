@@ -14,6 +14,13 @@ func max(numbers [4]int) (int, int) {
 	}
 	return maxi, maxValue
 }
+func setValue(arr [2]int) {
+	arr[0] = 100
+}
+
+func setValue1(arr *[2]int) {
+	arr[0] = 100 //(*arr)[0] = 100
+}
 
 func main() {
 	//数量写在类型前面
@@ -50,5 +57,11 @@ func main() {
 	fmt.Println(maxi, maxValue)
 
 	//max(arr1)//./arrays.go:51:5: cannot use arr1 (type [5]int) as type [4]int in argument to max
+
+	arr := [2]int{2, 3}
+	setValue(arr)
+	fmt.Println("setValue", arr) //[100 3]
+	setValue1(&arr)
+	fmt.Println("setValue1", arr) //[100 3]
 
 }
