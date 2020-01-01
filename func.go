@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"reflect"
+	"runtime"
+)
 
 func eval(a, b int, op string) int {
 	switch op {
@@ -53,6 +58,20 @@ func div2(a, b int) (q, r int) {
 	return
 }
 
+/**
+函数式编程
+*/
+func apply(op func(int, int) int, a, b int) int {
+	pointer := reflect.ValueOf(op).Pointer()
+	opName := runtime.FuncForPC(pointer).Name() //获取方法名
+	fmt.Printf("Calling function %s with args (%d, %d)\n", opName, a, b)
+	return op(a, b)
+}
+
+func Pow(a, b int) int {
+	return int(math.Pow(float64(a), float64(b)))
+}
+
 func main() {
 	fmt.Println(eval(3, 4, "*"))
 	fmt.Println(div(13, 3)) // 4 1
@@ -65,4 +84,12 @@ func main() {
 	} else {
 		fmt.Println(result)
 	}
+
+	fmt.Println(apply(Pow, 3, 4)) //Calling function main.Pow with args (3, 4)
+	//使用匿名函数，函数名自动取main.main.func1
+	//go没有lambda表达式
+	fmt.Println(apply( //Calling function main.main.func1 with args (3, 4)
+		func(a, b int) int {
+			return int(math.Pow(float64(a), float64(b)))
+		}, 3, 4))
 }
