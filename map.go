@@ -42,4 +42,8 @@ func main() {
 		fmt.Println("name3不存在")
 	}
 
+	// 删除key
+	delete(m, "name")
+	name, ok = m["name"]
+	fmt.Println(name, ok) // false
 }
