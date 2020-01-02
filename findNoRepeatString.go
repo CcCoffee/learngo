@@ -17,10 +17,10 @@ func findMaxLengthFromString(content string) int {
 
 	//start指针的移动由lastOccurred[x]是否存在决定
 	start := 0
-	lastOccurred := make(map[byte]int)
+	lastOccurred := make(map[rune]int)
 	maxLength := 0
 
-	for i, ch := range []byte(content) {
+	for i, ch := range []rune(content) {
 		if lastI, ok := lastOccurred[ch]; ok && lastI >= start {
 			start = lastI + 1
 		}
@@ -37,4 +37,8 @@ func main() {
 	fmt.Println(findMaxLengthFromString("abbcdee"))
 	fmt.Println(findMaxLengthFromString("aa"))
 	fmt.Println(findMaxLengthFromString(""))
+
+	fmt.Println(findMaxLengthFromString("中中"))
+	fmt.Println(findMaxLengthFromString("中人中"))
+	fmt.Println(findMaxLengthFromString("中文名中心"))
 }
