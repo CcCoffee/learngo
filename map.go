@@ -16,4 +16,11 @@ func main() {
 	var m3 map[string]int // m3 == nil
 	fmt.Println(m3)       //map[]
 
+	fmt.Println("map的遍历")
+	for k, v := range m {
+		fmt.Printf("k:v = %s:%s\n", k, v)
+	}
+	for k := range m {
+		fmt.Printf("k = %s\n", k)
+	}
 }
