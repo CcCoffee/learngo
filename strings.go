@@ -48,4 +48,11 @@ func main() {
 	fmt.Println()
 	//使用len只是获取字节长度，这里使用utf8.RuneCountInString(s)获取字符数
 	fmt.Println("utf8.RuneCountInString(s)打印字符数：", utf8.RuneCountInString(s)) //9
+
+	// strings的使用
+	// fields,split,join
+	// contains, index
+	// toLower, toUpper
+	// trim, trimRight, trimLeft
+
 }
