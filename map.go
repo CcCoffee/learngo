@@ -46,4 +46,11 @@ func main() {
 	delete(m, "name")
 	name, ok = m["name"]
 	fmt.Println(name, ok) // false
+
+	//获取map长度
+	fmt.Println(len(m)) //1
+
+	//map的key
+	//map使用哈希表，必须可以比较相等。java中要求实现equals和hashcode方法
+	//除了slice，map，function的内建类型都可以作为key
 }
