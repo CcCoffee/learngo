@@ -7,6 +7,11 @@ type treeNode struct {
 	left, right *treeNode
 }
 
+//与func print(node treeNode)能达到差不多的效果，区别在与这个方法直接拓展了结构体，调用方式更友好
+func (node treeNode) print() {
+	fmt.Println(node.value)
+}
+
 //go中没有构造方法，如果像加以控制，可以使用工厂函数代替
 //工厂函数一般返回结构的地址，结构不需要考虑在哪里分配，只要局部变量产生一个这样的结构，再把地址返回就可以
 //结构创建在堆上还是栈上？
@@ -32,4 +37,5 @@ func main() {
 		{5, nil, &root},
 	}
 	fmt.Println(nodes) //[{3 <nil> <nil>} {0 <nil> <nil>} {5 <nil> 0xc0000a0000}]
+	root.print()       //3
 }
