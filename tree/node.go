@@ -19,7 +19,12 @@ func (node treeNode) setValue1(value int) {
 
 //go语言没有this和self，如果要定义方法就必须给方法接收者取个名字
 //使用指针作为方法接收者，只有使用指针才能改变结构内容
+//nil指针也可以调用方法
 func (node *treeNode) setValue(value int) {
+	if node == nil {
+		fmt.Println("setting value to nil node. ignore")
+		return
+	}
 	node.value = value //go友好的地方在于，指针对象也可以直接用`.`访问对象属性
 }
 
@@ -58,4 +63,11 @@ func main() {
 	pRoot := &treeNode{}
 	pRoot.setValue(100)
 	pRoot.print() //100
+
+	var pNode *treeNode
+	pNode.setValue(200)
+	pNode = &treeNode{}
+	pNode.setValue(200)
+	pNode.print()
+
 }
