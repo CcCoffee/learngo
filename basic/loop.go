@@ -1,4 +1,4 @@
-package main
+package basic
 
 //import也可以用()
 import (
