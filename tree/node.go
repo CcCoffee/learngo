@@ -28,6 +28,15 @@ func (node *treeNode) setValue(value int) {
 	node.value = value //go友好的地方在于，指针对象也可以直接用`.`访问对象属性
 }
 
+func (node *treeNode) traverse() {
+	if node == nil { //java还需要对node进行非空判断，go则不需要
+		return
+	}
+	node.left.traverse()
+	node.print()
+	node.right.traverse()
+}
+
 //go中没有构造方法，如果像加以控制，可以使用工厂函数代替
 //工厂函数一般返回结构的地址，结构不需要考虑在哪里分配，只要局部变量产生一个这样的结构，再把地址返回就可以
 //结构创建在堆上还是栈上？
@@ -70,4 +79,11 @@ func main() {
 	pNode.setValue(200)
 	pNode.print()
 
+	newRoot := treeNode{value: 3}
+	newRoot.left = &treeNode{}
+	newRoot.right = &treeNode{5, nil, nil}
+	newRoot.right.left = new(treeNode)
+	newRoot.right.left.setValue(4)
+	newRoot.left.right = createNode(2)
+	newRoot.traverse() //0 2 3 4 5，中序遍历，左中右
 }
