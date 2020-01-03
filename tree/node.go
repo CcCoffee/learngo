@@ -12,6 +12,17 @@ func (node treeNode) print() {
 	fmt.Println(node.value)
 }
 
+//go的方法是值传递的，这个node对象已经是一个新对象，下面试图修改原本对象的属性无法实现
+func (node treeNode) setValue1(value int) {
+	node.value = value
+}
+
+//go语言没有this和self，如果要定义方法就必须给方法接收者取个名字
+//使用指针作为方法接收者，只有使用指针才能改变结构内容
+func (node *treeNode) setValue(value int) {
+	node.value = value //go友好的地方在于，指针对象也可以直接用`.`访问对象属性
+}
+
 //go中没有构造方法，如果像加以控制，可以使用工厂函数代替
 //工厂函数一般返回结构的地址，结构不需要考虑在哪里分配，只要局部变量产生一个这样的结构，再把地址返回就可以
 //结构创建在堆上还是栈上？
@@ -38,4 +49,13 @@ func main() {
 	}
 	fmt.Println(nodes) //[{3 <nil> <nil>} {0 <nil> <nil>} {5 <nil> 0xc0000a0000}]
 	root.print()       //3
+	root.setValue1(33)
+	root.print()      //3, 没有变成33，因为go的方法是值传递的
+	root.setValue(33) //setValue方法需要传入的指针对象，go会自动把root转为指针对象传入，这里不需要用&root.setValue(33)来调用
+	root.print()      //33
+
+	//如果调用对象是指针对象，当go编译器知道调用的方法需要值，会根据指针对象从地址把值对象取出来；如果调用方法需要指针，就不用去值对象，直接给方法
+	pRoot := &treeNode{}
+	pRoot.setValue(100)
+	pRoot.print() //100
 }
