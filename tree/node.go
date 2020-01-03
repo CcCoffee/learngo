@@ -20,6 +20,11 @@ func (node treeNode) setValue1(value int) {
 //go语言没有this和self，如果要定义方法就必须给方法接收者取个名字
 //使用指针作为方法接收者，只有使用指针才能改变结构内容
 //nil指针也可以调用方法
+//如何确定方法使用值接收者还是指针接收者比较好？
+//1. 要改变内容必须使用指针接收者
+//2. 结构过大也要考虑使用指针接收者
+//3. 一致性：如果有指针接收者，最好都是指针接收者
+//值接收者是go特有的
 func (node *treeNode) setValue(value int) {
 	if node == nil {
 		fmt.Println("setting value to nil node. ignore")
